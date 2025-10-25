@@ -1,0 +1,38 @@
+EXP11:To understand AWS Lambda, its workflow, various functions and create your first Lambda functions using Python / Java / Nodejs.
+Steps:
+1.Open Aws Console and search for Lambda Service.
+
+2.Choose region in which you need to create Lambda function.
+
+3.Create function with author from scratch
+function name - sum
+runtime- Python
+aechitecture - x86_64
+execution role- Create a new role with basic lambda permissions
+Lambda sum function is created successfully
+
+4.Navigate Code option -> file -> create new file as lambda_fun.py
+write following code in file 
+import json
+def lambda_handler(event, context):
+first_number = 100
+second_number = 200
+sum = first_number + second_number
+return sum
+save file
+
+5.Configure test event in json format
+Navigate Test option 
+select test event action as create new event
+event name - ur name 
+event sharing settings - private
+Event json - {}
+test event and click on deploy  
+
+6.2nd code(optional)
+lambda_handler (event, context):
+if event["name"] == "Rumiza":
+return "Hello, Rumiza"
+save file 
+perform step 5 and in event json write - { "name": "Rumiza"}
+test and click deploy

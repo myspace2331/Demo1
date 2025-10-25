@@ -1,0 +1,67 @@
+EXP2:To Build Your Application using AWS CodeBuild and Deploy on S3 / SEBS using AWS CodePipeline.
+Steps:
+1.Open S3, Create S3 Bucket to store project. Give bucket name and keep default setting as it is.
+2.Create 2nd bucket for deployment. Uncheck Block Public and Check Acknowledgment and Keep other setting as it is.
+3.Open CodeBuild, Build project, Give project name, project type- default project. 
+In manage default source credential select 
+credential type- OAuth app, 
+Service- Secrets Manager, 
+secrets- Existing secret. 
+In Source select 
+source provider- GitHub, 
+Repository- Repository in my GitHub account, 
+Repository URL- https://github.com/RumizaSayyeda/Car-pwa-deploy-on-aws.git
+In Environment, 
+Provisioning model- On-demand, 
+Environment image- Managed image, 
+Compute- EC2, 
+Running mode- Instance
+In Buildspec, Build specification- Use a buildspec file
+4.Click on create build project.
+
+5.Navigate Codepipeline. Give Pipeline name, Execution mode- Queued, 
+In advanced settings, 
+Artifact store- Custom location, 
+Bucket name- Name of first bucket you have given, 
+source provider- GitHub(via OAuth app)
+Repository- give repo link - RumizaSayyeda/Car-pwa-deploy-on-aws.git
+Branch- Master
+In Build,
+Build provider- Other build provider, and select AWS Codebuild
+Project name- Give the name of project u have build in CodeBuild
+Build type- Single build
+Region- choose urs
+Input artifacts- SourceArtifact
+
+6.In Deploy,
+Deploy provider- S3
+select ur region
+Input artifacts- SourceArtifact
+Bucket- Name of 2nd bucket created in S3
+Click next
+Deployment done 
+
+7.Go to codebuild -> service role -> permissions -> edit static website hosting, here enable static website hosting and select hosting type as Host a static website, Give Index document name, Edit bucket policy here add this code 
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::Bucket-Name/*"
+            ]
+        }
+    ]
+}
+
+
+
+
+
+
+

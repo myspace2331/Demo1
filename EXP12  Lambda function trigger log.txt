@@ -1,0 +1,47 @@
+EXP12:To create a Lambda function which will log “An Image has been added” once you add an object to a specific bucket in S3
+Steps:
+1.Search for S3 and click on Create Bucket, give bucket name, aws region, click  Create button.
+2.Now, click the bucket name and it will ask you to upload files. Thus, we are done with bucket creation in S3.
+
+3.Create Role that Works with S3 and Lambda
+Search for iam -> Roles
+Click Create role and choose AWS Service option. Select use case as Lambda and click Next Permission button.
+Add the permission from below and click Review.
+   AmazonS3FullAccess, AWSLambdaFullAccess and CloudWatchFullAccess.
+Now, enter the Role name, Role description and click Create Role button at the bottom
+
+4.Search for lambda service and create function by selecting following options
+Author from scratch
+Function name - any name
+Runtime - Node.js 14.x
+Permissions, Execution role - Use an existing role
+Existing role - Name you have given for role created in S3
+
+5.Once function is created, under function overview navigate Configuration -> Trigger, Fill the Trigger configuration fields
+select S3
+Bucket - Name you have given for role created in S3
+event type - all object create events
+Suffix - .jpg
+click on Add button below
+
+6.Navigate code option and create new file as index.js and Write following code in it:
+exports.handler = function(event, context, callback) {
+console.log("Incoming Event:", event);
+const bucket = event.Records[0].s3.bucket.name;
+const filename = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ''));
+const message = 'An Image has been added - ${bucket} -> ${filename}';
+console.log(message);
+callback(null, message);
+};
+
+Save file, test and click on deploy.
+
+7. Open S3 from Amazon services and open the bucket u created and Click Add files to add files  (image with .jpg extention only)
+
+8.To see the trigger detail, navigate CloudWatch -> To see the trigger details, go to AWS service and select CloudWatch.
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+EXP10:To perform Port, Service monitoring, Windows/Linux server monitoring using Nagios.
+Steps:
+1.Configure NRPE on Linux Host
+sudo apt-get install nagios-nrpe-server nagios-plugins
+sudo nano /etc/nagios/nrpe.cfg
+   allowed_hosts=127.0.0.1,::192.168.64.3, 192.168.1.100
+sudo systemctl restart nagios-nrpe-server
+Now run the below command from Nagios server to make sure your nagios is able to connect nrpe client on remote Linux system. Here 192.168.64.3 is your remote Linux system ip.
+   /usr/local/nagios/libexec/check_nrpe -H 192.168.64.3 NRPE v2.15
+
+2.Add Linux Host in Nagios
+First create a configuration file using below values. for example you Linux hosts ip is . We also need to define a service with host. So add a ping check service, which will continuously check that host is up or not   
+sudo nano /usr/local/nagios/etc/servers/MyLinuxHost001.cfg
+define host {
+ use linux-server
+host_name Linux_Host_001
+alias Linux Host 001
+address 192.168.64.3
+ register 1
+}
+define service{
+ host_name Linux_Host_001
+ service_description PING
+ check_command check_ping!100.0,20%!500.0,60%
+ max_check_attempts 2
+check_interval 2
+retry_interval 2
+check_period 24x7
+check_freshness 1
+contact_groups admins
+notification_interval 2
+notification_period 24x7
+notifications_enabled 1 register
+1 }
+
+sudo nagios -v /usr/local/nagios/etc/nagios.cfg
+sudo service nagios restart
+
+3.Check Host in Nagios Web Interface
+Open your Nagios web interface and check for new Linux hosts added in Nagios core service.

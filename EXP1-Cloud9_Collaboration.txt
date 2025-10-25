@@ -1,0 +1,35 @@
+EXP1:
+To understand the benefits of Cloud Infrastructure and Setup AWS Cloud9 IDE, Launch AWS Cloud9 IDE and Perform Collaboration Demonstration.
+Steps:
+1. Login with your AWS account.
+2. Navigate to Cloud 9 service.
+3. Click on Create Environment.
+4. Provide name for the Enviornment (WebAppIDE) and click on next.
+5. Review the Enviornment name and Settings and click on Create Enviornment.
+6. Open IAM Identity and Access Management in order to Add user in other tab.
+7. Add user provide manual password if you want and click on Next permission tab.
+8. Click on Create group
+9. Provide group name and click on create group.
+10.Create group, provide name to the group and add user to the group
+10.After that group is created click on next if u want to provide tag else click on Review for user settings and click on create user.
+11.Now close the user window and go to user Groups from left pane in IAM.
+12.click on your group name which you have created and navigate to permission tab.
+13.Now click on Add permission and select Attach Policy after that search for Cloud9 related policy and select Awscloud9EnviornmentMember policy and add it.
+14.Now we move towards our cloud9 IDE Enviornment tab.
+15.If you check at bottom side Cloud9 IDE also giving you and aws CLI for command operations: as we here checked git version, iam user details and so on...
+16.Now we will setup collaborative enviornment Click on File you can create new file or choose from template, here m opting html file to collaborate.
+17.Edit html file and save it.
+  File code: <!DOCTYPE html>
+	     <html>
+		<head>
+		    <title>Welcome to apsit</title>
+		</head>
+		<body> 
+		   <h1>Hello World</h1>
+		</body>
+	     </html>
+18.now in order to share this file to collaborate with other members of your team click on Share option on Roght Pane and username which you created in IAM before into Invite members and enable persmission as RW (Read and Write) and click on Done. Click OK for Security warning.
+19.Now Open your Browsers Incognito Window and login with IAM user which you configured before.
+20.After Successful login with IAM user open Cloud9 service from dashboard services and click on shared with you enviornment to collaborate.
+21.Click on Open IDE you will same interface as your other member have to collaborate in real time.
+
