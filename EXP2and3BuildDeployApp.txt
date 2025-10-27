@@ -10,7 +10,7 @@ secrets- Existing secret.
 In Source select 
 source provider- GitHub, 
 Repository- Repository in my GitHub account, 
-Repository URL- https://github.com/RumizaSayyeda/Car-pwa-deploy-on-aws.git
+Repository URL- https://github.com/urUserName/Car-pwa-deploy-on-aws.git
 In Environment, 
 Provisioning model- On-demand, 
 Environment image- Managed image, 
@@ -24,7 +24,7 @@ In advanced settings,
 Artifact store- Custom location, 
 Bucket name- Name of first bucket you have given, 
 source provider- GitHub(via OAuth app)
-Repository- give repo link - RumizaSayyeda/Car-pwa-deploy-on-aws.git
+Repository- give repo link - urUserName/Car-pwa-deploy-on-aws.git
 Branch- Master
 In Build,
 Build provider- Other build provider, and select AWS Codebuild
@@ -58,6 +58,7 @@ Deployment done
         }
     ]
 }
+
 
 
 
