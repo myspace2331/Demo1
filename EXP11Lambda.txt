@@ -31,8 +31,9 @@ test event and click on deploy
 
 6.2nd code(optional)
 lambda_handler (event, context):
-if event["name"] == "Rumiza":
-return "Hello, Rumiza"
+if event["name"] == "apsit":
+return "Hello, apsit"
 save file 
-perform step 5 and in event json write - { "name": "Rumiza"}
+perform step 5 and in event json write - { "name": "apsit"}
 test and click deploy
+
